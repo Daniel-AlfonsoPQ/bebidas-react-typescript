@@ -3,14 +3,19 @@ import {Outlet} from 'react-router-dom'
 import Header from '../components/Header'
 import Modal from '../components/Modal'
 import { useAppStore } from '../stores/useAppStore'
+import Notification from '../components/Notification'
 
 export default function Layout() {
 
   const {loadFavorites} = useAppStore()
+
+
   useEffect(() => {
     loadFavorites()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+
   return (
     <>
         <Header />
@@ -20,6 +25,7 @@ export default function Layout() {
         </main>
 
         <Modal />
+        <Notification />
     </>
   )
 }

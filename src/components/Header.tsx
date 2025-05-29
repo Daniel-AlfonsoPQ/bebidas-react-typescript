@@ -12,7 +12,7 @@ export default function Header() {
 
   const isHome = useMemo(() => pathname === "/", [pathname]);
 
-  const { fetchCategories, categories, searchRecipes } = useAppStore()
+  const { fetchCategories, categories, searchRecipes, showNotification } = useAppStore()
 
   useEffect(() => {
     fetchCategories()
@@ -31,7 +31,10 @@ export default function Header() {
     e.preventDefault();
 
     if(Object.values(searchFilters).includes('')) {
-      alert('Por favor completa todos los campos')
+      showNotification({
+        text: 'Por favor completa todos los campos',
+        error: true,
+      })
       return
     }
 
